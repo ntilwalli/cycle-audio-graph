@@ -6,6 +6,9 @@ WebAudioTestAPI.setState({
 const xs = require('xstream').default
 const test = require('tape')
 const makeAudioGraphDriver = require('./').default
+const run = require('@cycle/run').run
+const setup = require('@cycle/run').setup
+const setAdapt = require('@cycle/run/lib/adapt').setAdapt
 
 const audioContext = new AudioContext()
 
@@ -91,3 +94,35 @@ test('it works', t => {
   })
   t.end()
 })
+
+// test('mic input', t => {
+
+//     let dispose
+//     function app(sources) {
+//       const mic$ = sources.Audio.listen({
+//         fftSize: 256,
+//         interval: 1000
+//       }).take(3)
+
+//       let count = 0;
+//       mic$.subscribe(val => {
+//         console.log('val', val)
+//         count++
+//         if (count === 3) {
+//           assert.ok(true)
+//           dispose()
+//           done()
+//         }
+//       })
+
+//       return {
+//         Audio: xs.never(),
+//       };
+//     }
+
+//     const {sinks, sources, run} = setup(app, {
+//       Audio: audioGraphDriver()
+//     });
+
+//     dispose = run();
+// })
